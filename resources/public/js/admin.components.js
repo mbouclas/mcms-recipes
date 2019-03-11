@@ -1,0 +1,1 @@
+console.error("Error: Cannot find module 'D:\\Work\\mcms\\package-recipes\\resources\\assets\\app\\index.js' from 'D:\\Work\\mcms\\package-recipes'");

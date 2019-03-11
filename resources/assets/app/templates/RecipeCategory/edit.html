@@ -1,0 +1,27 @@
+<md-card class="md-whitespace-4dp">
+<md-toolbar class="md-table-toolbar md-default">
+    <div class="md-toolbar-tools">
+        <h2 class="md-title" ng-if="!VM.Category.id">Add new category
+            <span ng-if="VM.Category.parent_id != 0">Under {{ VM.Category.parent.title[VM.defaultLang] }}</span>
+            <span ng-if="VM.Category.parent_id == 0">Under Root</span>
+        </h2>
+        <h2 class="md-title" ng-if="VM.Category.id">{{ VM.Category.title[VM.defaultLang] || 'Create Category'}}</h2>
+        <div flex></div>
+
+        <md-button class="md-fab md-hue-2 md-accent" aria-label="open in new"
+                   href="{{ 'recipes-categories' | url }}">
+            <md-icon class="material-icons">arrow_back</md-icon>
+            <md-tooltip md-direction="top">
+                Back to list
+            </md-tooltip>
+        </md-button>
+
+    </div>
+
+</md-toolbar>
+
+<edit-recipe-category
+        item="VM.Category"
+        on-save="VM.onSave(item, isNew, parent)">
+</edit-recipe-category>
+</md-card>

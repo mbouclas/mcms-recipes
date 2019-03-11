@@ -1,0 +1,14 @@
+{
+  "name" : "Recipes",
+  "package" : "package-recipes",
+  "modules" : [
+    "mcms.recipes"
+  ],
+  "files" : {
+    "js" : [
+      "package-recipes/js/recipes-compiled.js"
+    ],
+    "css" : [
+    ]
+  }
+}
