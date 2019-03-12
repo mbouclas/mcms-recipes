@@ -63,7 +63,7 @@ class RecipeCategoryService
         $Category = $this->saveFeatured($category, $Category);
 
         //emit an event so that some other bit of the app might catch it
-        Event::fire('menu.item.sync',$Category);
+        event('menu.item.sync',$Category);
 
         return $Category;
     }
@@ -109,7 +109,7 @@ class RecipeCategoryService
     {
         $item = $this->category->find($id);
         //emit an event so that some other bit of the app might catch it
-        Event::fire('menu.item.destroy',$item);
+        event('menu.item.destroy',$item);
         return $item->delete();
     }
 

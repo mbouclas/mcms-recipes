@@ -101,8 +101,8 @@ class RecipeService
         }
 
         //emit an event so that some other bit of the app might catch it
-        Event::fire('menu.item.sync',$Recipe);
-        Event::fire('recipe.updated',$Recipe);
+        event('menu.item.sync',$Recipe);
+        event('recipe.updated',$Recipe);
 
         return $Recipe;
     }
@@ -128,7 +128,7 @@ class RecipeService
         $Recipe->categories()->attach($this->sortOutCategories($recipe['categories']));
         $Recipe = $this->saveRelated($recipe, $Recipe);
         $Recipe = $this->fixTags($recipe, $Recipe);
-        Event::fire('recipe.created',$Recipe);
+        event('recipe.created',$Recipe);
         return $Recipe;
     }
 
@@ -150,8 +150,8 @@ class RecipeService
         //delete from related
         Related::where('model',get_class($this->model))->where('source_item_id', $id)->orWhere('item_id', $id)->delete();
         //emit an event so that some other bit of the app might catch it
-        Event::fire('menu.item.destroy',$item);
-        Event::fire('recipe.destroyed',$item);
+        event('menu.item.destroy',$item);
+        event('recipe.destroyed',$item);
 
         return $item->delete();
     }
