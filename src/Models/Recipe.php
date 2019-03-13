@@ -14,6 +14,7 @@ use Mcms\Core\Traits\Presentable;
 use Mcms\Core\Traits\Relateable;
 use Mcms\Core\Traits\Userable;
 use Mcms\FrontEnd\Helpers\Sluggable;
+use Mcms\Recipes\Models\DynamicTable;
 use Mcms\Recipes\Models\Collections\RecipesCollection;
 use Illuminate\Database\Eloquent\Model;
 use Themsaid\Multilingual\Translatable;
@@ -60,7 +61,7 @@ class Recipe extends Model
      * @var array
      */
     protected $dates = ['created_at', 'updated_at', 'published_at'];
-    
+
     /**
      * @var array
      */
@@ -154,6 +155,11 @@ class Recipe extends Model
             ->withTimestamps();
     }
 
+    public function ingredients()
+    {
+        return $this->belongsToMany(Ingredient::class, 'recipe_recipe_ingredient', 'recipe_id', 'recipe_ingredient_id');
+    }
+
     /**
      * Returns the main category of this recipe.
      *
@@ -195,6 +201,16 @@ class Recipe extends Model
             ->orderBy('orderBy','ASC');
     }
 
+    public function dynamicTables()
+    {
+        return $this->belongsToMany(DynamicTable::class,
+            'dynamic_tables_items',
+            'item_id',
+            'dynamic_table_id')
+            ->where('dynamic_tables_items.model', get_class($this))
+            ->withTimestamps();
+    }
+
 
     /**
      * Use it with a closure for custom types
@@ -218,12 +234,12 @@ class Recipe extends Model
         return $this->belongsToMany($this->featuredModel, $this->table, 'id', 'id');
     }
 
-/*    public function related()
-    {
-        return $this->hasManyThrough(Recipe::class, Related::class ,'source_item_id', 'id', 'item_id')
-            ->where('model', get_class($this))
-            ->orderBy('orderBy','ASC');
-    }*/
+    /*    public function related()
+        {
+            return $this->hasManyThrough(Recipe::class, Related::class ,'source_item_id', 'id', 'item_id')
+                ->where('model', get_class($this))
+                ->orderBy('orderBy','ASC');
+        }*/
 
     /**
      * @return mixed

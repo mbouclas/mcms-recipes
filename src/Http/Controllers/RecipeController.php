@@ -23,9 +23,9 @@ class RecipeController extends Controller
     public function __construct(RecipeService $recipeService)
     {
         $this->recipeService = $recipeService;
-/*        $this->middleware('gate:cms.items.view',  ['only' => ['index', 'show', 'preview']]);
-        $this->middleware('gate:cms.items.add',  ['only' => ['store', 'create', 'new']]);
-        $this->middleware('gate:cms.items.delete',  ['only' => ['destroy']]);*/
+        /*        $this->middleware('gate:cms.items.view',  ['only' => ['index', 'show', 'preview']]);
+                $this->middleware('gate:cms.items.add',  ['only' => ['store', 'create', 'new']]);
+                $this->middleware('gate:cms.items.delete',  ['only' => ['destroy']]);*/
     }
 
     public function index(RecipeFilters $filters, Request $request)
@@ -148,7 +148,7 @@ class RecipeController extends Controller
 
         return [
             'item' => $this->recipeService->findOne($id, ['related', 'categories', 'dynamicTables',
-                'galleries','tagged','files', 'extraFields', 'extraFields.field', 'addons']),
+                'galleries','tagged','files', 'extraFields', 'extraFields.field']),
             'imageCategories' => $imageCategories,
             'extraFields' => $extraFieldService->model->filter($filters)->get(),
             'imageCopies' => Config::get('recipes.items.images'),
