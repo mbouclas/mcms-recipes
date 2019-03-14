@@ -49,7 +49,6 @@ class Recipe extends Model
         'thumb',
         'user_id',
         'settings',
-        'ingredients',
         'meta',
         'active',
         'published_at'
@@ -70,7 +69,6 @@ class Recipe extends Model
         'description' => 'array',
         'description_long' => 'array',
         'settings' => 'array',
-        'ingredients' => 'array',
         'meta' => 'array',
         'thumb' => 'array',
         'active' => 'boolean'
@@ -157,7 +155,7 @@ class Recipe extends Model
 
     public function ingredients()
     {
-        return $this->belongsToMany(Ingredient::class, 'recipe_recipe_ingredient', 'recipe_id', 'recipe_ingredient_id');
+        return $this->hasMany(RecipeIngredient::class)->orderBy('orderBy', 'ASC');
     }
 
     /**

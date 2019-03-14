@@ -13,6 +13,7 @@ use Mcms\Core\Models\ExtraFieldValue as BaseExtraFieldValue;
 class ExtraFieldValue extends BaseExtraFieldValue
 {
     protected $recipesModel;
+    public $translatable = [];
 
     public function __construct($attributes = [])
     {
