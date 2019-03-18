@@ -20,7 +20,7 @@ class CreateRecipeRecipeIngredientTable extends Migration
             $table->integer('recipe_ingredient_id')->unsigned()->index()->nullable();
             $table->string('title')->nullable();
             $table->smallInteger('unit_id')->nullable();
-            $table->integer('quantity')->nullable();
+            $table->string('quantity')->nullable();
             $table->string('type')->nullable();
             $table->boolean('main')->nullable();
             $table->smallInteger('orderBy')->nullable();
