@@ -232,12 +232,6 @@ class Recipe extends Model
         return $this->belongsToMany($this->featuredModel, $this->table, 'id', 'id');
     }
 
-    /*    public function related()
-        {
-            return $this->hasManyThrough(Recipe::class, Related::class ,'source_item_id', 'id', 'item_id')
-                ->where('model', get_class($this))
-                ->orderBy('orderBy','ASC');
-        }*/
 
     /**
      * @return mixed
