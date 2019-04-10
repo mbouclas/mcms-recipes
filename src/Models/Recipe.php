@@ -158,6 +158,13 @@ class Recipe extends Model
         return $this->hasMany(RecipeIngredient::class)->orderBy('orderBy', 'ASC');
     }
 
+    public function mainIngredients()
+    {
+        return $this->hasMany(RecipeIngredient::class)
+            ->where('main', true)
+            ->orderBy('orderBy', 'ASC');
+    }
+
     /**
      * Returns the main category of this recipe.
      *
